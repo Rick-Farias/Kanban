@@ -21,61 +21,28 @@
     <title>Kanban</title>
 </head>
 
-<body class="f">
+<body>
 
-    <div id="container" class="container flex">
-        <!--
-        -->
-        <div class="columnCard flex" id="to-do">
-            <div class="title flex">
-                <span>To-do</span>
-                <div class="icons">
-                    <i class="fa-solid fa-plus"></i>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </div>
-            </div>
-
-            <div class="cards flex">
-                <div draggable="true" class="card flex">
-                    <span class="nameCards">Otimizar Processos</span>
-                    <div class="icons">
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-
-                        <div class="editCard hide">
-                            <div class="edit"><i class="fa-solid fa-pen"></i><span> Editar nome</span></div>
-                            <div class="trash"><i class="fa-solid fa-trash"></i><span> Apagar</span></div>
-                        </div>
-                        
-                    </div>
-                    <span class="date">Nov, 19, 2024</span>
-                </div>
-
-                <div draggable="true" class="card flex">
-                    <span class="nameCards">Atualizar Gráficos</span>
-                    <span class="date">Nov, 22, 2024</span>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="columnCard flex" id="inProgress">
-            <div class="title flex"><span>In Progress</span>
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-            </div>
-
-            <div class="cards flex">
-                <div draggable="true" class="card flex">
-                    <span class="nameCards">Verificar Relatórios</span>
-                    <span class="date">Nov, 19, 2024</span>
-                </div>
+    <div class="kanban">
+        <div class="nav">
+                    <span>Kanban</span>
+                    <div class="user flex">
+                        <div class="userPhoto flex"> <img src="./styles.css/images/user.jpg" alt=""></div>
+                        <div class="userName">Riquelme Farias</div>
             </div>
         </div>
 
+        <div id="container" class="container">
+        </div>
+
+        <div id="addColumns" class="flex">
+            <i class="fa-solid fa-plus"></i>
+        </div>
     </div>
 
-    <div id="addColumns" class="flex">
-        <i class="fa-solid fa-plus"></i>
-    </div>
+    
+
+    
 </body>
 
 </html>

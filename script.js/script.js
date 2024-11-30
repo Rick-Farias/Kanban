@@ -14,6 +14,7 @@ function creatColumns(){
     titleColumn.classList.add("title","flex")
 
     const title = document.createElement("span")
+    title.classList.add("titleColumn")
     title.contentEditable = "true";
     title.addEventListener("focusout", ()=>{
         title.contentEditable = "false";
@@ -36,6 +37,7 @@ function creatColumns(){
     const iconAdd = document.createElement("i")
     iconAdd.classList.add("fa-solid","fa-plus")
     iconAdd.addEventListener('click', (e)=>{
+        editCard.classList.add("hide")
         creatCards(e)
     })
     icons.appendChild(iconAdd)
@@ -43,10 +45,74 @@ function creatColumns(){
     const iconEdit = document.createElement("i")
     iconEdit.classList.add("fa-solid","fa-ellipsis-vertical")
     icons.appendChild(iconEdit)
+    iconEdit.addEventListener("click", ()=>{
+        editCard.classList.toggle("hide")
+        })
+
 
     const cardsColumn = document.createElement("div")
     cardsColumn.classList.add("cards", "flex")
+    cardsColumn.addEventListener('dragover', (e)=>{
+        e.preventDefault()
+    })
 
+    cardsColumn.addEventListener('dragenter', (e)=>{
+        if(e.target.classList.contains("cards")){
+            e.target.classList.add("columnHover")
+        }
+    })
+
+    cardsColumn.addEventListener('dragleave',(e)=>{
+        e.target.classList.remove("columnHover")
+    })
+
+    cardsColumn.addEventListener('drop',(e)=>{
+        if(e.target.classList.contains("cards")){
+            e.target.classList.remove("columnHover")
+            e.target.append(draggedCard)
+        }
+    })
+
+    
+    const editCard = document.createElement("div")
+    editCard.classList.add("editCard", "hide")
+
+    const edit = document.createElement("div")
+    edit.classList.add("edit")
+
+    editCard.appendChild(edit)
+
+    const trash = document.createElement("div")
+    trash.classList.add("trash")
+
+    editCard.appendChild(trash)
+
+    const iconPen = document.createElement("i")
+    iconPen.classList.add("fa-solid", "fa-pen")
+    edit.addEventListener("click", ()=>{
+        title.contentEditable = "true";
+        title.focus()
+    })
+
+    const iconTrash = document.createElement("i")
+    iconTrash.classList.add("fa-solid", "fa-trash")
+    trash.appendChild(iconTrash)
+
+    trash.addEventListener("click", ()=>{
+        container.removeChild(columnCard)
+    })
+
+    const spanTrash = document.createElement("span")
+    spanTrash.innerText = "Apagar"
+    trash.appendChild(spanTrash)
+
+    edit.appendChild(iconPen)
+
+    const spanEdit = document.createElement("span")
+    spanEdit.innerText = "Editar Nome"
+    edit.appendChild(spanEdit)
+
+    iconEdit.appendChild(editCard)
     titleColumn.appendChild(icons)
     columnCard.appendChild(titleColumn)
     columnCard.appendChild(cardsColumn)
@@ -68,37 +134,15 @@ cards.forEach((card)=>{
     card.addEventListener('dragstart', dragstart)
 })
 
-containerMove.forEach((column)=>{
-    column.addEventListener('dragover', (e)=>{
-        e.preventDefault()
-    })
-
-    column.addEventListener('dragenter', (e)=>{
-        if(e.target.classList.contains("cards")){
-            e.target.classList.add("columnHover")
-        }
-    })
-
-    column.addEventListener('dragleave',(e)=>{
-        e.target.classList.remove("columnHover")
-    })
-
-    column.addEventListener('drop',(e)=>{
-        if(e.target.classList.contains("cards")){
-            e.target.classList.remove("columnHover")
-            e.target.append(draggedCard)
-        }
-    })
-
-})
-
 function creatCards(e){
     const column = e.target.parentNode.parentNode.parentNode.lastChild
 
     const cardDiv = document.createElement("div")
+    cardDiv.addEventListener("dragstart", dragstart)
+
     cardDiv.classList.add("card")
     cardDiv.setAttribute('draggable', 'true')
-    cardDiv.addEventListener("dragstart", dragstart)
+    
 
     const spanName = document.createElement("span")
     spanName.classList.add("nameCards")
@@ -129,7 +173,7 @@ function creatCards(e){
     const icons = document.createElement("div")
     icons.classList.add("icons")
     icons.addEventListener("click", ()=>{
-        editCard.classList.toggle("hide")
+    editCard.classList.toggle("hide")
     })
 
     const editIcon = document.createElement("i")
