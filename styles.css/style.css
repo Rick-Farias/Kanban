@@ -21,7 +21,7 @@
 
 .columnCard{
     width: 320px;
-    height: 770px;
+    height: 80vh;
     gap: 20px;
     background-color: #FFF;
     box-shadow: 0 2px 20px 0 rgba(10, 11, 37, 0.37);
@@ -234,5 +234,11 @@
     }
     .userName{
         font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 389px){
+    .columnCard{
+        height: 70vh;
     }
 }
